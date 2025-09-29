@@ -1,6 +1,5 @@
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer } from "@/components/ui/chart";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, User, BookOpen } from "lucide-react";
 
@@ -130,7 +129,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={chartConfig} className="h-[300px]">
+            <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -150,7 +149,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
-            </ChartContainer>
+            </div>
           </CardContent>
         </Card>
 
@@ -166,7 +165,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={chartConfig} className="h-[300px]">
+            <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={detailedResults} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
@@ -202,7 +201,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
                   />
                 </BarChart>
               </ResponsiveContainer>
-            </ChartContainer>
+            </div>
           </CardContent>
         </Card>
       </div>
