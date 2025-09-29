@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Educational theme - soft, welcoming colors */
+    --background: 0 0% 99%;
+    --foreground: 225 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 225 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 15% 20%;
+
+    /* Educational blue - calm and trustworthy */
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 98%;
+    --primary-soft: 214 84% 90%;
+
+    /* Soft educational colors */
+    --secondary: 195 12% 94%;
+    --secondary-foreground: 225 15% 20%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 46%;
+
+    --accent: 195 12% 94%;
+    --accent-foreground: 225 15% 20%;
+
+    /* Educational green - growth and success */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    --success-soft: 142 71% 85%;
+
+    /* Educational orange - warmth and energy */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --warning-soft: 38 92% 85%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 84% 56%;
+
+    --radius: 0.75rem;
+
+    /* Educational gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(195 92% 62%));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(120 71% 55%));
+    --gradient-warm: linear-gradient(135deg, hsl(38 92% 50%), hsl(45 92% 60%));
+    
+    /* Educational shadows */
+    --shadow-soft: 0 4px 6px -1px hsl(214 84% 56% / 0.1), 0 2px 4px -1px hsl(214 84% 56% / 0.06);
+    --shadow-medium: 0 10px 15px -3px hsl(214 84% 56% / 0.1), 0 4px 6px -2px hsl(214 84% 56% / 0.05);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 225 20% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 225 20% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 225 20% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 214 84% 66%;
+    --primary-foreground: 225 20% 7%;
+    --primary-soft: 214 84% 20%;
+
+    --secondary: 225 20% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 225 20% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 225 20% 15%;
+    --accent-foreground: 210 40% 98%;
+
+    --success: 142 71% 55%;
+    --success-foreground: 225 20% 7%;
+    --success-soft: 142 71% 25%;
+
+    --warning: 38 92% 60%;
+    --warning-foreground: 225 20% 7%;
+    --warning-soft: 38 92% 25%;
+
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 225 20% 7%;
+
+    --border: 225 20% 18%;
+    --input: 225 20% 18%;
+    --ring: 214 84% 66%;
+
+    --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -2px hsl(0 0% 0% / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
