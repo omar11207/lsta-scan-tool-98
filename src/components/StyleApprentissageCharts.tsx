@@ -55,17 +55,17 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
 
   const detailedResults = [
     {
-      style: "Visuel",
+      label: "Visuel",
       average: getAverageScore("visuel"),
       color: "hsl(214 84% 56%)"
     },
     {
-      style: "Auditif", 
+      label: "Auditif", 
       average: getAverageScore("auditif"),
       color: "hsl(142 71% 45%)"
     },
     {
-      style: "Kinesthésique",
+      label: "Kinesthésique",
       average: getAverageScore("kinesthesique"),
       color: "hsl(38 92% 50%)"
     }
@@ -170,7 +170,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
                 <BarChart data={detailedResults} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
-                    dataKey="style" 
+                    dataKey="label" 
                     tick={{ fontSize: 12 }}
                     angle={-45}
                     textAnchor="end"
