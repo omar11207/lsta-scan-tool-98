@@ -152,9 +152,9 @@ const GlobalResultsPage = () => {
           </Card>
 
           {/* Charts and Detailed Analysis */}
-          {globalData.rythme && globalData.rythme.length > 0 && (
+          {Object.keys(globalData).length > 0 && (
             <div className="mb-6">
-              <ResultsCharts data={globalData.rythme} />
+              <GlobalResultsCharts data={globalData} />
             </div>
           )}
 
