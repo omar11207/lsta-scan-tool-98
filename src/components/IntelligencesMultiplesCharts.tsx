@@ -27,11 +27,11 @@ const IntelligencesMultiplesCharts = ({ data }: IntelligencesMultiplesChartsProp
     name: key,
     value,
     color: [
-      "hsl(var(--primary))",
-      "hsl(var(--success))", 
-      "hsl(var(--warning))",
-      "hsl(var(--secondary))",
-      "hsl(var(--accent))"
+      "hsl(214 84% 56%)",
+      "hsl(142 71% 45%)", 
+      "hsl(38 92% 50%)",
+      "hsl(195 12% 94%)",
+      "hsl(195 12% 94%)"
     ][index % 5]
   }));
 
@@ -51,7 +51,7 @@ const IntelligencesMultiplesCharts = ({ data }: IntelligencesMultiplesChartsProp
   const chartConfig = {
     intelligence: {
       label: "Intelligence",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -122,7 +122,7 @@ const IntelligencesMultiplesCharts = ({ data }: IntelligencesMultiplesChartsProp
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={pieData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="name" 
                     tick={{ fontSize: 12 }}
@@ -151,7 +151,7 @@ const IntelligencesMultiplesCharts = ({ data }: IntelligencesMultiplesChartsProp
                     dataKey="value" 
                     name="Nombre"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>

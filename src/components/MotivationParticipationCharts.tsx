@@ -24,9 +24,9 @@ const MotivationParticipationCharts = ({ data }: MotivationParticipationChartsPr
   }, {} as Record<string, number>);
 
   const globalResultData = [
-    { name: "Motivation haute", value: motivationCount.haute || 0, color: "hsl(var(--success))" },
-    { name: "Motivation moyenne", value: motivationCount.moyenne || 0, color: "hsl(var(--primary))" },
-    { name: "Motivation basse", value: motivationCount.basse || 0, color: "hsl(var(--warning))" }
+    { name: "Motivation haute", value: motivationCount.haute || 0, color: "hsl(142 71% 45%)" },
+    { name: "Motivation moyenne", value: motivationCount.moyenne || 0, color: "hsl(214 84% 56%)" },
+    { name: "Motivation basse", value: motivationCount.basse || 0, color: "hsl(38 92% 50%)" }
   ].filter(item => item.value > 0);
 
   // Generate summary for the class
@@ -55,7 +55,7 @@ const MotivationParticipationCharts = ({ data }: MotivationParticipationChartsPr
   const chartConfig = {
     niveau: {
       label: "Niveau de motivation",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -126,7 +126,7 @@ const MotivationParticipationCharts = ({ data }: MotivationParticipationChartsPr
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={globalResultData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="name" 
                     tick={{ fontSize: 12 }}
@@ -155,7 +155,7 @@ const MotivationParticipationCharts = ({ data }: MotivationParticipationChartsPr
                     dataKey="value" 
                     name="Nombre"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>

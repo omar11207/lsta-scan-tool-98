@@ -31,11 +31,11 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
   // Get diagnostic completion data
   const getDiagnosticCompletionData = () => {
     const diagnostics = [
-      { name: "Rythme d'apprentissage", completed: data.rythme?.length || 0, color: "hsl(var(--primary))" },
-      { name: "Style d'apprentissage", completed: data.styleApprentissage?.length || 0, color: "hsl(var(--success))" },
-      { name: "Intelligences multiples", completed: data.intelligencesMultiples?.length || 0, color: "hsl(var(--warning))" },
-      { name: "Soutien familial", completed: data.soutienFamilial?.length || 0, color: "hsl(var(--secondary))" },
-      { name: "Motivation", completed: data.motivationParticipation?.length || 0, color: "hsl(var(--accent))" }
+      { name: "Rythme d'apprentissage", completed: data.rythme?.length || 0, color: "hsl(214 84% 56%)" },
+      { name: "Style d'apprentissage", completed: data.styleApprentissage?.length || 0, color: "hsl(142 71% 45%)" },
+      { name: "Intelligences multiples", completed: data.intelligencesMultiples?.length || 0, color: "hsl(38 92% 50%)" },
+      { name: "Soutien familial", completed: data.soutienFamilial?.length || 0, color: "hsl(195 12% 94%)" },
+      { name: "Motivation", completed: data.motivationParticipation?.length || 0, color: "hsl(195 12% 94%)" }
     ];
     return diagnostics.filter(d => d.completed > 0);
   };
@@ -100,7 +100,7 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
   const chartConfig = {
     global: {
       label: "Analyse globale",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -181,8 +181,8 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
                     <Radar
                       name="Score"
                       dataKey="score"
-                      stroke="hsl(var(--primary))"
-                      fill="hsl(var(--primary))"
+                      stroke="hsl(214 84% 56%)"
+                      fill="hsl(214 84% 56%)"
                       fillOpacity={0.3}
                       strokeWidth={2}
                     />
@@ -209,7 +209,7 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={completionData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="name" 
                     tick={{ fontSize: 10 }}
@@ -226,7 +226,7 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
                           <div className="bg-background border rounded-lg p-3 shadow-lg">
                             <p className="font-medium">{label}</p>
                             <p className="text-sm text-muted-foreground">
-                              Élèves évalués: <span className="font-medium">{data.completed}</span>
+                              Élèves diagnostiqués: <span className="font-medium">{data.completed}</span>
                             </p>
                           </div>
                         );
@@ -238,7 +238,7 @@ const GlobalResultsCharts = ({ data }: GlobalResultsChartsProps) => {
                     dataKey="completed" 
                     name="Élèves"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>

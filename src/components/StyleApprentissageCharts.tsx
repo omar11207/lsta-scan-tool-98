@@ -27,9 +27,9 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
   }, {} as Record<string, number>);
 
   const globalResultData = [
-    { name: "Visuel", value: styleCount.visuel || 0, color: "hsl(var(--primary))" },
-    { name: "Auditif", value: styleCount.auditif || 0, color: "hsl(var(--success))" },
-    { name: "Kinesthésique", value: styleCount.kinesthesique || 0, color: "hsl(var(--warning))" }
+    { name: "Visuel", value: styleCount.visuel || 0, color: "hsl(214 84% 56%)" },
+    { name: "Auditif", value: styleCount.auditif || 0, color: "hsl(142 71% 45%)" },
+    { name: "Kinesthésique", value: styleCount.kinesthesique || 0, color: "hsl(38 92% 50%)" }
   ].filter(item => item.value > 0);
 
   // Calculate average scores for each style
@@ -58,17 +58,17 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
     {
       style: "Visuel",
       average: getAverageScore("visuel"),
-      color: "hsl(var(--primary))"
+      color: "hsl(214 84% 56%)"
     },
     {
       style: "Auditif", 
       average: getAverageScore("auditif"),
-      color: "hsl(var(--success))"
+      color: "hsl(142 71% 45%)"
     },
     {
       style: "Kinesthésique",
       average: getAverageScore("kinesthesique"),
-      color: "hsl(var(--warning))"
+      color: "hsl(38 92% 50%)"
     }
   ];
 
@@ -98,7 +98,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
   const chartConfig = {
     style: {
       label: "Style d'apprentissage",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -169,7 +169,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={detailedResults} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="style" 
                     tick={{ fontSize: 12 }}
@@ -198,7 +198,7 @@ const StyleApprentissageCharts = ({ data }: StyleApprentissageChartsProps) => {
                     dataKey="average" 
                     name="Score moyen"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>

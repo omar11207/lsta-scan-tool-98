@@ -24,9 +24,9 @@ const SoutienFamilialCharts = ({ data }: SoutienFamilialChartsProps) => {
   }, {} as Record<string, number>);
 
   const globalResultData = [
-    { name: "Soutien fort", value: soutienCount.fort || 0, color: "hsl(var(--success))" },
-    { name: "Soutien moyen", value: soutienCount.moyen || 0, color: "hsl(var(--primary))" },
-    { name: "Soutien faible", value: soutienCount.faible || 0, color: "hsl(var(--warning))" }
+    { name: "Soutien fort", value: soutienCount.fort || 0, color: "hsl(142 71% 45%)" },
+    { name: "Soutien moyen", value: soutienCount.moyen || 0, color: "hsl(214 84% 56%)" },
+    { name: "Soutien faible", value: soutienCount.faible || 0, color: "hsl(38 92% 50%)" }
   ].filter(item => item.value > 0);
 
   // Generate summary for the class
@@ -55,7 +55,7 @@ const SoutienFamilialCharts = ({ data }: SoutienFamilialChartsProps) => {
   const chartConfig = {
     soutien: {
       label: "Niveau de soutien",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -126,7 +126,7 @@ const SoutienFamilialCharts = ({ data }: SoutienFamilialChartsProps) => {
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={globalResultData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="name" 
                     tick={{ fontSize: 12 }}
@@ -155,7 +155,7 @@ const SoutienFamilialCharts = ({ data }: SoutienFamilialChartsProps) => {
                     dataKey="value" 
                     name="Nombre"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>

@@ -28,9 +28,9 @@ const ResultsCharts = ({ data }: ResultsChartsProps) => {
   }, {} as Record<string, number>);
 
   const globalResultData = [
-    { name: "Rapide", value: categoryCount.rapide || 0, color: "hsl(var(--success))" },
-    { name: "Normal", value: categoryCount.normal || 0, color: "hsl(var(--primary))" },
-    { name: "Lent", value: categoryCount.lent || 0, color: "hsl(var(--warning))" }
+    { name: "Rapide", value: categoryCount.rapide || 0, color: "hsl(142 71% 45%)" },
+    { name: "Normal", value: categoryCount.normal || 0, color: "hsl(214 84% 56%)" },
+    { name: "Lent", value: categoryCount.lent || 0, color: "hsl(38 92% 50%)" }
   ].filter(item => item.value > 0);
 
   // Prepare data for bar chart (overall performance by subject)
@@ -77,22 +77,22 @@ const ResultsCharts = ({ data }: ResultsChartsProps) => {
     {
       subject: "Français Lecture",
       average: getAverageScore(data, "Français Lecture"),
-      color: "hsl(var(--primary))"
+      color: "hsl(214 84% 56%)"
     },
     {
       subject: "Français Calcul",
       average: getAverageScore(data, "Français Calcul"),
-      color: "hsl(var(--primary))"
+      color: "hsl(214 84% 56%)"
     },
     {
       subject: "Français Écriture",
       average: getAverageScore(data, "Français Écriture"),
-      color: "hsl(var(--primary))"
+      color: "hsl(214 84% 56%)"
     },
     {
       subject: "Arabe Lecture",
       average: getAverageScore(data, "Arabe Lecture"),
-      color: "hsl(var(--success))"
+      color: "hsl(142 71% 45%)"
     }
   ];
 
@@ -122,7 +122,7 @@ const ResultsCharts = ({ data }: ResultsChartsProps) => {
   const chartConfig = {
     average: {
       label: "Moyenne",
-      color: "hsl(var(--primary))",
+      color: "hsl(214 84% 56%)",
     },
   };
 
@@ -193,7 +193,7 @@ const ResultsCharts = ({ data }: ResultsChartsProps) => {
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={detailedResults} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(220 13% 91%)" />
                   <XAxis 
                     dataKey="subject" 
                     tick={{ fontSize: 12 }}
@@ -222,7 +222,7 @@ const ResultsCharts = ({ data }: ResultsChartsProps) => {
                     dataKey="average" 
                     name="Moyenne"
                     radius={[4, 4, 0, 0]}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(214 84% 56%)"
                   />
                 </BarChart>
               </ResponsiveContainer>
