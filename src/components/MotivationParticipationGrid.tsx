@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,17 +17,35 @@ interface StudentRow {
 }
 
 const MotivationParticipationGrid = () => {
-  const [students, setStudents] = useState<StudentRow[]>([
-    {
-      id: "1",
-      name: "",
-      participation: { active: false, moyenne: false, faible: false },
-      motivation: { forte: false, moyenne: false, faible: false },
-      observationEnseignant: "",
-      niveauGlobal: ""
-    }
-  ]);
+  const [students, setStudents] = useState<StudentRow[]>([]);
   const navigate = useNavigate();
+
+  // Charger les étudiants depuis la liste globale ou créer une ligne vide
+  useEffect(() => {
+    const globalStudents = localStorage.getItem('globalStudents');
+    if (globalStudents) {
+      const studentNames = JSON.parse(globalStudents);
+      const initialStudents = studentNames.map((name: string, index: number) => ({
+        id: (index + 1).toString(),
+        name: name,
+        participation: { active: false, moyenne: false, faible: false },
+        motivation: { forte: false, moyenne: false, faible: false },
+        observationEnseignant: "",
+        niveauGlobal: "" as const
+      }));
+      setStudents(initialStudents);
+    } else {
+      // Si aucune liste globale, créer une ligne vide par défaut
+      setStudents([{
+        id: "1",
+        name: "",
+        participation: { active: false, moyenne: false, faible: false },
+        motivation: { forte: false, moyenne: false, faible: false },
+        observationEnseignant: "",
+        niveauGlobal: ""
+      }]);
+    }
+  }, []);
 
   const calculateGlobalLevel = (student: StudentRow): "haute" | "moyenne" | "basse" | "" => {
     let score = 0;

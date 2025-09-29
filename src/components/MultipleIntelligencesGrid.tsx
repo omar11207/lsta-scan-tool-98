@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,22 +22,45 @@ interface StudentRow {
 }
 
 const MultipleIntelligencesGrid = () => {
-  const [students, setStudents] = useState<StudentRow[]>([
-    {
-      id: "1",
-      name: "",
-      linguistique: { fort: false, moyen: false, faible: false },
-      logicoMath: { fort: false, moyen: false, faible: false },
-      spatiale: { fort: false, moyen: false, faible: false },
-      musicale: { fort: false, moyen: false, faible: false },
-      corporelle: { fort: false, moyen: false, faible: false },
-      interpersonnelle: { fort: false, moyen: false, faible: false },
-      intrapersonnelle: { fort: false, moyen: false, faible: false },
-      naturaliste: { fort: false, moyen: false, faible: false },
-      profilDominant: ""
-    }
-  ]);
+  const [students, setStudents] = useState<StudentRow[]>([]);
   const navigate = useNavigate();
+
+  // Charger les étudiants depuis la liste globale ou créer une ligne vide
+  useEffect(() => {
+    const globalStudents = localStorage.getItem('globalStudents');
+    if (globalStudents) {
+      const studentNames = JSON.parse(globalStudents);
+      const initialStudents = studentNames.map((name: string, index: number) => ({
+        id: (index + 1).toString(),
+        name: name,
+        linguistique: { fort: false, moyen: false, faible: false },
+        logicoMath: { fort: false, moyen: false, faible: false },
+        spatiale: { fort: false, moyen: false, faible: false },
+        musicale: { fort: false, moyen: false, faible: false },
+        corporelle: { fort: false, moyen: false, faible: false },
+        interpersonnelle: { fort: false, moyen: false, faible: false },
+        intrapersonnelle: { fort: false, moyen: false, faible: false },
+        naturaliste: { fort: false, moyen: false, faible: false },
+        profilDominant: ""
+      }));
+      setStudents(initialStudents);
+    } else {
+      // Si aucune liste globale, créer une ligne vide par défaut
+      setStudents([{
+        id: "1",
+        name: "",
+        linguistique: { fort: false, moyen: false, faible: false },
+        logicoMath: { fort: false, moyen: false, faible: false },
+        spatiale: { fort: false, moyen: false, faible: false },
+        musicale: { fort: false, moyen: false, faible: false },
+        corporelle: { fort: false, moyen: false, faible: false },
+        interpersonnelle: { fort: false, moyen: false, faible: false },
+        intrapersonnelle: { fort: false, moyen: false, faible: false },
+        naturaliste: { fort: false, moyen: false, faible: false },
+        profilDominant: ""
+      }]);
+    }
+  }, []);
 
   const calculateDominantProfile = (student: StudentRow): string => {
     const intelligences = [

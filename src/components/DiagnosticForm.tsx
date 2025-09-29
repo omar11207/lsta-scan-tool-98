@@ -1,20 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { BookOpen, Brain, Heart, Home, Users } from "lucide-react";
+import PDFImport from "@/components/PDFImport";
 
 const DiagnosticForm = () => {
   const [level, setLevel] = useState<string>("");
   const [diagnosticType, setDiagnosticType] = useState<string>("");
+  const [globalStudents, setGlobalStudents] = useState<string[]>([]);
   const navigate = useNavigate();
+
+  // Charger la liste d'étudiants depuis localStorage au début
+  useEffect(() => {
+    const savedStudents = localStorage.getItem('globalStudents');
+    if (savedStudents) {
+      setGlobalStudents(JSON.parse(savedStudents));
+    }
+  }, []);
+
+  // Sauvegarder la liste d'étudiants dans localStorage
+  const handleStudentsImported = (students: string[]) => {
+    setGlobalStudents(students);
+    localStorage.setItem('globalStudents', JSON.stringify(students));
+    localStorage.setItem('selectedLevel', level); // Sauvegarder aussi le niveau sélectionné
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!level || !diagnosticType) return;
+
+    // Sauvegarder le niveau sélectionné
+    localStorage.setItem('selectedLevel', level);
 
     const routes = {
       "rythme": "/diagnostic/rythme",
@@ -80,6 +100,25 @@ const DiagnosticForm = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Import PDF des étudiants */}
+          <PDFImport onStudentsImported={handleStudentsImported} />
+          
+          {globalStudents.length > 0 && (
+            <div className="p-4 bg-success/10 border border-success/20 rounded-lg">
+              <p className="text-sm font-medium text-success mb-2">
+                ✓ {globalStudents.length} élève(s) importé(s)
+              </p>
+              <div className="text-xs text-success/80 max-h-24 overflow-y-auto">
+                {globalStudents.slice(0, 5).map((student, index) => (
+                  <div key={index}>{student}</div>
+                ))}
+                {globalStudents.length > 5 && (
+                  <div className="font-medium">... et {globalStudents.length - 5} autre(s)</div>
+                )}
+              </div>
+            </div>
+          )}
+          
           <div className="space-y-3">
             <Label htmlFor="level" className="text-base font-medium">
               Niveau scolaire de l'élève

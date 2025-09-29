@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Plus, Trash2 } from "lucide-react";
-import PDFImport from "./PDFImport";
+
 
 interface StudentRow {
   id: string;
@@ -18,17 +18,35 @@ interface StudentRow {
 }
 
 const LearningStyleGrid = () => {
-  const [students, setStudents] = useState<StudentRow[]>([
-    {
-      id: "1",
-      name: "",
-      visuel: { faible: false, moyen: false, parfait: false },
-      auditif: { faible: false, moyen: false, parfait: false },
-      kinesthesique: { faible: false, moyen: false, parfait: false },
-      styleDominant: ""
-    }
-  ]);
+  const [students, setStudents] = useState<StudentRow[]>([]);
   const navigate = useNavigate();
+
+  // Charger les étudiants depuis la liste globale ou créer une ligne vide
+  useEffect(() => {
+    const globalStudents = localStorage.getItem('globalStudents');
+    if (globalStudents) {
+      const studentNames = JSON.parse(globalStudents);
+      const initialStudents = studentNames.map((name: string, index: number) => ({
+        id: (index + 1).toString(),
+        name: name,
+        visuel: { faible: false, moyen: false, parfait: false },
+        auditif: { faible: false, moyen: false, parfait: false },
+        kinesthesique: { faible: false, moyen: false, parfait: false },
+        styleDominant: "" as const
+      }));
+      setStudents(initialStudents);
+    } else {
+      // Si aucune liste globale, créer une ligne vide par défaut
+      setStudents([{
+        id: "1",
+        name: "",
+        visuel: { faible: false, moyen: false, parfait: false },
+        auditif: { faible: false, moyen: false, parfait: false },
+        kinesthesique: { faible: false, moyen: false, parfait: false },
+        styleDominant: ""
+      }]);
+    }
+  }, []);
 
   const calculateDominantStyle = (student: StudentRow): "visuel" | "auditif" | "kinesthesique" | "" => {
     let visuelScore = 0;
@@ -106,17 +124,6 @@ const LearningStyleGrid = () => {
     }
   };
 
-  const handleStudentsImported = (studentNames: string[]) => {
-    const newStudents: StudentRow[] = studentNames.map((name, index) => ({
-      id: (Date.now() + index).toString(),
-      name,
-      visuel: { faible: false, moyen: false, parfait: false },
-      auditif: { faible: false, moyen: false, parfait: false },
-      kinesthesique: { faible: false, moyen: false, parfait: false },
-      styleDominant: ""
-    }));
-    setStudents(newStudents);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,9 +149,6 @@ const LearningStyleGrid = () => {
           </CardDescription>
         </CardHeader>
       </Card>
-
-      {/* PDF Import - Optional */}
-      <PDFImport onStudentsImported={handleStudentsImported} />
 
       {/* Main Grid Form */}
       <Card className="shadow-medium">

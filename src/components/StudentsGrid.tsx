@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,18 +20,37 @@ interface StudentRow {
 }
 
 const StudentsGrid = () => {
-  const [students, setStudents] = useState<StudentRow[]>([
-    {
-      id: "1",
-      name: "",
-      frenchReading: { correct: false, partiel: false, faux: false },
-      frenchCalcul: { correct: false, partiel: false, faux: false },
-      frenchWriting: { oui: false, incomplet: false },
-      arabicReading: { correct: false, partiel: false, wrong: false },
-      finalCategory: ""
-    }
-  ]);
+  const [students, setStudents] = useState<StudentRow[]>([]);
   const navigate = useNavigate();
+
+  // Charger les étudiants depuis la liste globale ou créer une ligne vide
+  useEffect(() => {
+    const globalStudents = localStorage.getItem('globalStudents');
+    if (globalStudents) {
+      const studentNames = JSON.parse(globalStudents);
+      const initialStudents = studentNames.map((name: string, index: number) => ({
+        id: (index + 1).toString(),
+        name: name,
+        frenchReading: { correct: false, partiel: false, faux: false },
+        frenchCalcul: { correct: false, partiel: false, faux: false },
+        frenchWriting: { oui: false, incomplet: false },
+        arabicReading: { correct: false, partiel: false, wrong: false },
+        finalCategory: "" as const
+      }));
+      setStudents(initialStudents);
+    } else {
+      // Si aucune liste globale, créer une ligne vide par défaut
+      setStudents([{
+        id: "1",
+        name: "",
+        frenchReading: { correct: false, partiel: false, faux: false },
+        frenchCalcul: { correct: false, partiel: false, faux: false },
+        frenchWriting: { oui: false, incomplet: false },
+        arabicReading: { correct: false, partiel: false, wrong: false },
+        finalCategory: ""
+      }]);
+    }
+  }, []);
 
   const calculateFinalCategory = (student: StudentRow): "rapide" | "normal" | "lent" | "" => {
     // Calculer le score total selon les réponses
