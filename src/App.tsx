@@ -17,6 +17,7 @@ import ResultsStyleApprentissagePage from "./pages/ResultsStyleApprentissagePage
 import ResultsIntelligencesMultiplesPage from "./pages/ResultsIntelligencesMultiplesPage";
 import ResultsSoutienFamilialPage from "./pages/ResultsSoutienFamilialPage";
 import ResultsMotivationParticipationPage from "./pages/ResultsMotivationParticipationPage";
+import AdminConfigPage from "./pages/AdminConfigPage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/results/soutien-familial" element={<ResultsSoutienFamilialPage />} />
           <Route path="/results/motivation-participation" element={<ResultsMotivationParticipationPage />} />
           <Route path="/results/global" element={<GlobalResultsPage />} />
+          <Route path="/admin/config" element={<AdminConfigPage />} />
           <Route path="/404" element={<NotFoundCustom />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -1,6 +1,6 @@
 import DiagnosticForm from "@/components/DiagnosticForm";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, FileText, Award, TrendingUp, Users, Shield } from "lucide-react";
+import { GraduationCap, FileText, Award, TrendingUp, Users, Shield, Settings } from "lucide-react";
 import lstaLogo from "@/assets/lsta-logo.png";
 
 const Index = () => {
@@ -71,16 +71,27 @@ const Index = () => {
             <p className="text-muted-foreground text-sm">
               Accès aux analyses globales
             </p>
-            <Button
-              variant="outline"
-              onClick={() => window.location.href = '/results/global'}
-              className="gap-3 px-6 py-3 text-base hover-scale border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
-              size="lg"
-            >
-              <FileText className="w-5 h-5" />
-              Voir les résultats globaux (Niveau 5)
-              <Users className="w-4 h-4 opacity-70" />
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button
+                variant="outline"
+                onClick={() => window.location.href = '/results/global'}
+                className="gap-3 px-6 py-3 text-base hover-scale border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
+                size="lg"
+              >
+                <FileText className="w-5 h-5" />
+                Voir les résultats globaux (Niveau 5)
+                <Users className="w-4 h-4 opacity-70" />
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => window.location.href = '/admin/config'}
+                className="gap-3 px-6 py-3 text-base hover-scale border-2 border-warning/20 hover:border-warning/40 hover:bg-warning/5"
+                size="lg"
+              >
+                <Settings className="w-5 h-5" />
+                Configuration Admin
+              </Button>
+            </div>
           </div>
         </div>
       </main>
